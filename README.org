@@ -10,9 +10,10 @@ A package to incorporate flyspell into consult.
 This allows to choose a misspelled word, jump to it and optionally
 apply a function to it.
 
-#+html: <p align="center"><img src="https://gitlab.com/OlMon/consult-flyspell/-/blob/master/img/example.png" /></p>
+[[https://gitlab.com/OlMon/consult-flyspell/-/raw/master/img/example.png]]
 
 ** Usage
+
 Call function =consult-flyspell=.
 With prefix it will scan the buffer first with =flyspell-buffer=.
 
