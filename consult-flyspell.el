@@ -68,18 +68,19 @@
 (defun consult-flyspell--all-words ()
   "Collects all currently labeled misspelled words and corresponding point in buffer."
   (reverse (let ((wwords (list)))
-             (save-excursion (beginning-of-buffer)
+             (save-excursion (goto-char (point-min))
                              (save-restriction
                                (widen)
                                (while (not (flyspell-goto-next-error))
                                  (when (word-at-point (point))
-                                   (add-to-list 'wwords
-                                                `(,(format (format (concat (propertize "Line %%%dd:" 'face 'consult-flyspell-line-number) (propertize " %%s" 'face 'consult-flyspell-found-error))
-                                                                   (length (number-to-string
-                                                                            (count-lines (point-min) (point-max)))))
-                                                           (line-number-at-pos (point))
-                                                           (word-at-point (point)))
-                                                  ,(point-marker))))
+                                   (push
+                                    `(,(format (format (concat (propertize "Line %%%dd:" 'face 'consult-flyspell-line-number) (propertize " %%s" 'face 'consult-flyspell-found-error))
+                                                       (length (number-to-string
+                                                                (count-lines (point-min) (point-max)))))
+                                               (line-number-at-pos (point))
+                                               (word-at-point (point)))
+                                      ,(point-marker))
+                                    wwords))
                                  (forward-word))))
              wwords)))
 
@@ -99,7 +100,7 @@ will check buffer with `flyspell-buffer' first."
        :require-match t
        :history t ;; disable history
        :sort nil
-       :lookup (lambda (_ candidates cons) (car (consult--lookup-cdr _ candidates cons)))
+       :lookup (lambda (notused candidates cons) (car (consult--lookup-cdr notused candidates cons)))
        :state (consult--jump-state 'consult-preview-error))
       (when (boundp 'consult-flyspell-select-function)
         (funcall consult-flyspell-select-function))
