@@ -10,6 +10,8 @@ A package to incorporate flyspell into consult.
 This allows to choose a misspelled word, jump to it and optionally
 apply a function to it.
 
+[[https://gitlab.com/OlMon/consult-flyspell/-/blob/master/img/example.png]]
+
 ** Usage
 Call function =consult-flyspell=.
 With prefix it will scan the buffer first with =flyspell-buffer=.
@@ -28,7 +30,7 @@ candidate.
 #+end_src
 
 
-Apply ='flyspell-correct-at-point= directly after selecting
+Apply =flyspell-correct-at-point= directly after selecting
 candidate. [This needs the package =flyspell-correct= ]
 #+begin_src emacs-lisp
 (setq consult-flyspell-correct-function 'flyspell-correct-at-point)
@@ -57,7 +59,7 @@ the prefix argument is set.
 The straight way is with the following code:
 #+begin_src emacs-lisp
 (use-package consult-flyspell
-  :straight (consult-projectile :type git :host gitlab :repo "OlMon/consult-flyspell" :branch "master")
+  :straight (consult-flyspell :type git :host gitlab :repo "OlMon/consult-flyspell" :branch "master")
   :config
   ;; default settings
   (setq consult-flyspell-select-function nil
