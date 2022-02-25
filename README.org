@@ -10,7 +10,7 @@ A package to incorporate flyspell into consult.
 This allows to choose a misspelled word, jump to it and optionally
 apply a function to it.
 
-[[https://gitlab.com/OlMon/consult-flyspell/-/blob/master/img/example.png]]
+#+html: <p align="center"><img src="https://gitlab.com/OlMon/consult-flyspell/-/blob/master/img/example.png" /></p>
 
 ** Usage
 Call function =consult-flyspell=.
