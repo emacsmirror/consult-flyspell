@@ -1,0 +1,69 @@
+#+SETUPFILE: ~/.emacs.d/org-styles/html/stylish_white.theme
+#+TITLE: consult-flyspell
+#+AUTHOR: Marco Pawłowski
+#+EMAIL: pawlowski.marco@gmail.com
+#+OPTIONS: num:nil \n:t
+
+
+* 
+A package to incorporate flyspell into consult.
+This allows to choose a misspelled word, jump to it and optionally
+apply a function to it.
+
+** Usage
+Call function =consult-flyspell=.
+With prefix it will scan the buffer first with =flyspell-buffer=.
+
+*** Available Options
+**** =consult-flyspell-select-function=
+This allows a apply a function after selecting a misspelled word from
+the minibuffer.
+
+Two examples are:
+
+Apply =flyspell-auto-correct-word= directly after selecting
+candidate.
+#+begin_src emacs-lisp
+(setq consult-flyspell-correct-function 'flyspell-auto-correct-word)
+#+end_src
+
+
+Apply ='flyspell-correct-at-point= directly after selecting
+candidate. [This needs the package =flyspell-correct= ]
+#+begin_src emacs-lisp
+(setq consult-flyspell-correct-function 'flyspell-correct-at-point)
+#+end_src
+
+Apply ='flyspell-correct-at-point= directly after selecting candidate
+and jump back to consult-flyspell.
+[This needs the package =flyspell-correct= ]
+#+begin_src emacs-lisp
+(setq consult-flyspell-correct-function (lambda () (flyspell-correct-at-point) (consult-flyspell)))
+#+end_src
+
+**** =consult-flyspell-set-point-after-word=
+If set to =t= (default) the point will be at the end of the word
+after jumping to it, =nil= will set the point before the word.
+
+**** =consult-flyspell-always-check-buffer=
+If set to =nil= (default) prefix argument is needed to check the
+buffer with =flyspell-buffer= first.
+If set to =t= =flyspell-buffer= will always be called first, unless
+the prefix argument is set.
+
+** Installation
+
+*** Straight
+The straight way is with the following code:
+#+begin_src emacs-lisp
+(use-package consult-flyspell
+  :straight (consult-projectile :type git :host gitlab :repo "OlMon/consult-flyspell" :branch "master")
+  :config
+  ;; default settings
+  (setq consult-flyspell-select-function nil
+        consult-flyspell-set-point-after-word t
+        consult-flyspell-always-check-buffer nil))
+#+end_src
+
+*** Directly
+The direct way is to clone this repo into your load-path and require =consult-flyspell=.
