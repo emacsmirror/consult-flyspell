@@ -5,7 +5,7 @@
 ;; Author:  Marco Pawłowski
 ;; Keywords: convenience
 ;; Version: 0.5
-;; Package-Requires: ((emacs "25.1") (consult "0.12") (flyspell "27.1"))
+;; Package-Requires: ((emacs "25.1") (consult "0.12"))
 ;; URL: https://gitlab.com/OlMon/consult-flyspell
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -37,7 +37,7 @@
 
 
 ;;; Code:
-
+(require 'thingatpt)
 (require 'flyspell)
 (require 'consult)
 
@@ -74,7 +74,7 @@
                                (while (not (flyspell-goto-next-error))
                                  (when (word-at-point (point))
                                    (push
-                                    `(,(format (format (concat (propertize "Line %%%dd:" 'face 'consult-flyspell-line-number) (propertize " %%s" 'face 'consult-flyspell-found-error))
+                                    `(,(format (format (propertize "Line %%%dd:" 'face 'consult-flyspell-line-number) (propertize " %%s" 'face 'consult-flyspell-found-error)
                                                        (length (number-to-string
                                                                 (count-lines (point-min) (point-max)))))
                                                (line-number-at-pos (point))
