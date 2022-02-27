@@ -74,9 +74,10 @@
                                (while (not (flyspell-goto-next-error))
                                  (when (word-at-point (point))
                                    (push
-                                    `(,(format (format (propertize "Line %%%dd:" 'face 'consult-flyspell-line-number) (propertize " %%s" 'face 'consult-flyspell-found-error)
+                                    `(,(format (format (propertize "Line %%%dd:%s" 'face 'consult-flyspell-line-number)
                                                        (length (number-to-string
-                                                                (count-lines (point-min) (point-max)))))
+                                                                (count-lines (point-min) (point-max))))
+                                                       (propertize " %s" 'face 'consult-flyspell-found-error))
                                                (line-number-at-pos (point))
                                                (word-at-point (point)))
                                       ,(point-marker))
