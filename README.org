@@ -56,6 +56,9 @@ the prefix argument is set.
 
 ** Installation
 
+*** Melpa
+This package is available on Melpa.
+
 *** Straight
 The straight way is with the following code:
 #+begin_src emacs-lisp
