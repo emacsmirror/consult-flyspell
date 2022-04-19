@@ -80,7 +80,7 @@
                                                        (propertize " %s" 'face 'consult-flyspell-found-error))
                                                (line-number-at-pos (point))
                                                (word-at-point (point)))
-                                      ,(point-marker))
+                                      . ,(point-marker))
                                     wwords))
                                  (forward-word))))
              wwords)))
@@ -101,7 +101,7 @@ will check buffer with `flyspell-buffer' first."
        :require-match t
        :history t ;; disable history
        :sort nil
-       :lookup (lambda (notused candidates cons) (car (consult--lookup-cdr notused candidates cons)))
+       :lookup 'consult--lookup-cdr
        :state (consult--jump-state 'consult-preview-error))
       (when (boundp 'consult-flyspell-select-function)
         (funcall consult-flyspell-select-function))
