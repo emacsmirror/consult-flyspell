@@ -102,7 +102,7 @@ will check buffer with `flyspell-buffer' first."
        :history t ;; disable history
        :sort nil
        :lookup 'consult--lookup-cdr
-       :state (consult--jump-state 'consult-preview-error))
+       :state (consult--jump-state))
       (when (boundp 'consult-flyspell-select-function)
         (funcall consult-flyspell-select-function))
       (if consult-flyspell-set-point-after-word
