@@ -27,21 +27,21 @@ Two examples are:
 Apply =flyspell-auto-correct-word= directly after selecting
 candidate.
 #+begin_src emacs-lisp
-(setq consult-flyspell-correct-function 'flyspell-auto-correct-word)
+(setq consult-flyspell-select-function 'flyspell-auto-correct-word)
 #+end_src
 
 
 Apply =flyspell-correct-at-point= directly after selecting
 candidate. [This needs the package =flyspell-correct= ]
 #+begin_src emacs-lisp
-(setq consult-flyspell-correct-function 'flyspell-correct-at-point)
+(setq consult-flyspell-select-function 'flyspell-correct-at-point)
 #+end_src
 
 Apply ='flyspell-correct-at-point= directly after selecting candidate
 and jump back to consult-flyspell.
 [This needs the package =flyspell-correct= ]
 #+begin_src emacs-lisp
-(setq consult-flyspell-correct-function (lambda () (flyspell-correct-at-point) (consult-flyspell)))
+(setq consult-flyspell-select-function (lambda () (flyspell-correct-at-point) (consult-flyspell)))
 #+end_src
 
 **** =consult-flyspell-set-point-after-word=
